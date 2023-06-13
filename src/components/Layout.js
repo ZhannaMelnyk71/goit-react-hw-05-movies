@@ -1,4 +1,4 @@
-import { Outlet, Link, NavLink  } from "react-router-dom";
+import { Outlet, Link } from "react-router-dom";
 import { Suspense } from "react";
 // import styled from '"styled-components';
 import React from 'react';
