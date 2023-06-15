@@ -1,37 +1,59 @@
-import { useState} from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSearchParams, useLocation } from "react-router-dom";
+// import { fetchSearchByKeyword } from '../../components/services/Api';
+import { getMovieByQuery } from '../../components/services/Api'
+import Loader from '../../components/Loader/Loader'
 
 const Movies = () => {
-    const [movies, setMovies] = useState(['m-1', 'm-2', 'm-3'])
-
+    const [movies, setMovies] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+ 
     const [searchParams, setSearchParams] = useSearchParams();
-    const name = searchParams.get("name") ?? "";
+    const query = searchParams.get("query") ?? "";
     const location = useLocation();
 
     const updateQueryString = (e) => {
-        const nameValue = e.target.value;
-        if (nameValue === "") {
+        const queryValue = e.target.value;
+        if (queryValue === "") {
             return setSearchParams({});
     }
-    setSearchParams({ name: nameValue });
-  };
+    setSearchParams({ query: queryValue });
+    };
+    
+useEffect(() => {
+    if (!query) return;
+    setIsLoading(true);
 
+    const fetchMovieByQuery = async () => {
+      try {
+        const movieByQuery = await getMovieByQuery(query);
+        setMovies(movieByQuery);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    fetchMovieByQuery();
+    setIsLoading(false);
+  }, [searchParams, query]);
 
-    const searchMovies = movies.filter(movie => movie.includes(name));
-
-    // useEffect запрос списка фільмів
+    
+    // const searchMovies = movies.filter(movie => movie.includes(query.toLowerCase()));
+    // console.log(searchMovies)
+    
     return (
         <div>
             <input
                 type="text"
-                value={name}
+                value={query}
                 onChange={updateQueryString} />
+            {isLoading && <Loader />}
+            {/* {falseSearch && (<p>Upps...There is no movies with such name. Please, try again</p>)} */}
             <ul>
-                {searchMovies.map(movie => {
+                {movies.map(({ id, original_title }) => {
                     return (
-                        <li key={movie}>
-                            <Link to={`${movie}`} state={{ from: location }} >{movie}</Link>
+                        <li key={id}>
+                            <Link to={`${id}`} state={{ from: location }} >{original_title}</Link>
                         </li>
             )
         })}
@@ -44,3 +66,4 @@ const Movies = () => {
 };
 
 export default Movies;
+

@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import { fetchTrendings } from '../../components/services/Api';
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import Loader from '../../components/Loader/Loader'
 
 const Home = () => {
 
     const [films, setFilms] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+    const location = useLocation();
 
     useEffect(() => {
 
@@ -25,7 +27,7 @@ const Home = () => {
 
     }, []);
     
-console.log(films)
+// console.log(films)
     return (
         <div>
             <h1>Trending today</h1>
@@ -33,12 +35,12 @@ console.log(films)
                 {films.map(film => {
                     return (
                         <li key={film.id}> 
-                            <Link to={`/movies/${film.id}`} >{film.title}</Link>
+                            <Link to={`/movies/${film.id}`} state={{ from: location }} >{film.title}</Link>
                         </li>
             )
         })}
             </ul>
-            
+            {isLoading && <Loader />}
         </div>
     )
 
