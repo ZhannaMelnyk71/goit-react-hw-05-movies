@@ -28,3 +28,18 @@ export const getMovieById = async movieId => {
 
   return data;
 };
+
+export const getCastMovie = async movieId => {
+  const { data } = await axios.get(
+    `movie/${movieId}/credits?api_key=${API_KEY}&language=en-US`
+  );
+
+  return data.cast;
+};
+export const getReviewsMovie = async movieId => {
+  const { data } = await axios.get(
+    `movie/${movieId}/reviews?api_key=${API_KEY}&language=en-US`
+  );
+
+  return data.results;
+};

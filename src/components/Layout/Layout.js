@@ -1,30 +1,15 @@
 import { Outlet, Link } from "react-router-dom";
 import { Suspense } from "react";
-// import styled from '"styled-components';
 import React from 'react';
-
-// const StyledLink = styled(NavLink)`
-//   color: black;
-
-//   &.active {
-//     color: orange;
-//   }
-// `;
+import css from './Layout.module.css'
 
 const Layout = () => {
 
 
     return (
-        <div
-            style={{
-                height: '100vh',
-                justifyContent: 'center',
-                alignItems: 'center',
-                fontSize: 20,
-                color: '#010101',
-                padding: 20,
-            }}>
-            <nav
+        <div className={css.container}>
+            <header>
+                <nav
                 style={{
                     display: 'flex',
                     margin: '15px',
@@ -32,7 +17,9 @@ const Layout = () => {
                 }}>
                     <Link to="/">Home</Link>
                     <Link to="/movies">Movies</Link>
-            </nav>
+                </nav>
+            </header>
+
             <main>
                 <Suspense fallback={<div>Loading...</div>}>
                     <Outlet />

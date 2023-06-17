@@ -1,0 +1,8 @@
+.container {
+  width: 1400px; 
+  height: 100vh;
+  font-size: 20px;;
+  color:rgb(50, 18, 92);
+  background-color: rgb(194, 194, 238);
+  padding: 20px;
+}

@@ -7,6 +7,8 @@ import { getMovieById } from '../../components/services/Api'
 // import Cast from "components/Cast";
 // import Reviews from "components/Reviews";
 
+const imageUrl = 'https://image.tmdb.org/t/p/w500/';
+
 const MovieDetails = () => {
     
     const { movieId } = useParams();
@@ -31,21 +33,24 @@ const MovieDetails = () => {
     return (
         <>
             <Link to={locationRef.current}>Go back</Link>
+            <div>
+                <img src={imageUrl + movie.backdrop_path} alt="movie_picture" />
+                <h1>{movie.original_title}</h1>
+                <h2>Rating: {Math.round(movie.vote_average)}</h2>
+                <h2>Overview:</h2>
+                <p>{movie.overview}</p>
+                <h2>Genres</h2>
+                <ul>{movie.genres?.map(genre => (
+                    <li key={genre.id}>{genre.name}</li>
+                ))}</ul>
+                <h2>Additional</h2>
+                <ul>
+                    <li><Link to="cast">Cast</Link></li>
+                    <li><Link to="reviews">Reviews</Link></li>
+                </ul>
+            </div>
 
-            {/* <img src={movie.backdrop_path} alt="movie_picture" /> */}
-            <h1>{movie.original_title}</h1>
-            <h2>Rating: {Math.round(movie.vote_average)}</h2>
-            <h2>Overview:</h2>
-            <p>{movie.overview}</p>
-            <h2>Genres</h2>
-            <ul>{movie.genres?.map(genre => (
-              <li key={genre.id}>{genre.name}</li>
-            ))}</ul>
-            <h2>Additional</h2>
-            <ul>
-                <li><Link to="cast">Cast</Link></li>
-                <li><Link to="reviews">Reviews</Link></li>
-            </ul>
+            
             <Suspense fallback={<div>Loading...</div>}>
                 <Outlet />
             </Suspense>
