@@ -1,0 +1,13 @@
+.reviewes_container{
+  padding: 15px;
+}
+
+.reviews_list{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.reviewes_autor{
+  font-weight: 700;
+}

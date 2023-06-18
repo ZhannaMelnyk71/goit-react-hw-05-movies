@@ -1,0 +1,18 @@
+.btn_back{
+  max-width: 75px;
+  margin-bottom: 15px;
+  margin-left: 15px;
+}
+
+.movie_card{
+  margin-left: 15px;
+}
+
+.movie_name, .movie_details{
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+.movie_genres_item{
+  font-size: 15px;
+}

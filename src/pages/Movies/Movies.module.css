@@ -1,0 +1,16 @@
+.movies_input {
+  margin-left: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  min-width: 147px;
+  height: 28px;
+  border-color: rgb(0, 28, 100);
+  border-radius: 5px;
+  font-size: 20px;
+}
+
+.movies_input:focus::-webkit-input-placeholder {color: transparent}
+
+.movies_list{
+  margin-left: 15px;
+}

@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSearchParams, useLocation } from "react-router-dom";
-// import { fetchSearchByKeyword } from '../../components/services/Api';
 import { getMovieByQuery } from '../../components/services/Api'
 import Loader from '../../components/Loader/Loader'
+import css from './Movies.module.css'
 
 const Movies = () => {
     const [movies, setMovies] = useState([]);
@@ -43,13 +43,15 @@ useEffect(() => {
     
     return (
         <div>
-            <input
+            <input className={css.movies_input}
                 type="text"
                 value={query}
-                onChange={updateQueryString} />
+                onChange={updateQueryString}
+                placeholder="Find the the film"
+            />
             {isLoading && <Loader />}
             {/* {falseSearch && (<p>Upps...There is no movies with such name. Please, try again</p>)} */}
-            <ul>
+            <ul className={css.movies_list}>
                 {movies.map(({ id, original_title }) => {
                     return (
                         <li key={id}>

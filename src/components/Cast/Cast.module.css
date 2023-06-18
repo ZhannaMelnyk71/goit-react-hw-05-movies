@@ -1,0 +1,19 @@
+.cast_card{
+  padding: 15px;
+
+}
+
+.cast_list{
+  display: flex;
+  gap: 15px;
+  /* align-items: baseline; */
+  /* flex-direction: column; */
+  flex-wrap: wrap;
+
+}
+
+.cast_item{
+  margin: 0;
+  display: block;
+  width: 180px;
+}

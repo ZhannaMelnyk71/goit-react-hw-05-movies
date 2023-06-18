@@ -9,11 +9,9 @@ const Layout = () => {
     return (
         <div className={css.container}>
             <header>
-                <nav
+                <nav className={css.header_nav}
                 style={{
-                    display: 'flex',
-                    margin: '15px',
-                    gap: '15px'
+                    
                 }}>
                     <Link to="/">Home</Link>
                     <Link to="/movies">Movies</Link>
